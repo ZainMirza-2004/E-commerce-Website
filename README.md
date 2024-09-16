@@ -24,11 +24,11 @@ This full-stack e-commerce website is designed with Python(Flask), SQLAlchemy, J
 ### Installation:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/repository-name.git
+   git clone [https://github.com/username/repository-name.git](https://github.com/ZainMirza-2004/E-commerce-website.git)
    ```
 2. Navigate to the project directory:
    ```bash
-   cd repository-name
+   cd E-commerce-website
    ```
 3. Install dependencies:
    ```bash
