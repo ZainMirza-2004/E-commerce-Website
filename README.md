@@ -15,7 +15,8 @@ This full-stack e-commerce website is designed with Python(Flask), SQLAlchemy, J
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 - **Back-End**: ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
-- **Database Management**: ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-003B57?style=flat-square&logo=sqlalchemy&logoColor=white)
+- **Database Management**:![MySQL](https://img.shields.io/badge/MySQL-00758F?style=flat-square&logo=mysql&logoColor=white)
+- ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-003B57?style=flat-square&logo=sqlalchemy&logoColor=white)
 
 ### Installation:
 1. Clone the repository:
