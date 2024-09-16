@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='checkout.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <h1>Checkout</h1>
+    <div class="container">
+        <form action="{{ url_for('checkoutPage') }}" method="post">
+            {{ form.csrf_token }}
+            <div>
+                {{ form.card_number.label }}
+                {{ form.card_number(class="form-control") }}
+                {% for error in form.card_number.errors %}
+                <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.expiry_date.label }}
+                {{ form.expiry_date(class="form-control") }}
+                {% for error in form.expiry_date.errors %}
+                <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.cvv.label }}
+                {{ form.cvv(class="form-control") }}
+                {% for error in form.cvv.errors %}
+                <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <!-- New address fields -->
+            <div>
+                {{ form.street_address.label }}
+                {{ form.street_address(class="form-control") }}
+                {% for error in form.street_address.errors %}
+                <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.city.label }}
+                {{ form.city(class="form-control") }}
+                {% for error in form.city.errors %}
+                <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.state.label }}
+                {{ form.state(class="form-control") }}
+                {% for error in form.state.errors %}
+                <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.postal_code.label }}
+                {{ form.postal_code(class="form-control") }}
+                {% for error in form.postal_code.errors %}
+                <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <button type="submit">Submit Payment</button>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

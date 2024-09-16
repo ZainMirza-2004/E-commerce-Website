@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basket</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='basket.css') }}">
+</head>
+<body>
+    <h1>Your Basket</h1>
+    <div class="container">
+        {% if technologies_in_basket %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Carbon Footprint</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in technologies_in_basket %}
+                        <tr>
+                            <td><img src="{{ url_for('static', filename=item.technology.image) }}" alt="{{ item.technology.name }}" style="max-height: 100px;"></td>
+                            <td>{{ item.technology.name }}</td>
+                            <td>${{ item.technology.price }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.technology.carbon }} gCO₂e</td>
+                            <td>${{ item.technology.price * item.quantity }}</td>
+                            <td class="remove-button">
+                                <a href="{{ url_for('removeFromBasket', techId=item.technology.id) }}" class="btn btn-danger rounded-button">Remove</a>
+                              </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="total-price">
+                <p>Total Price: ${{ total_price }}</p>
+            </div>
+            <div class="checkout-actions">
+                <a href="{{ url_for('checkoutPage') }}" class="btn btn-primary mr-2 fs-5">Proceed to Checkout</a>
+                <a href="{{ url_for('galleryPage') }}" class="btn btn-secondary mr-2 fs-5">Continue Shopping</a>
+                <form action="{{ url_for('clearBasket') }}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger fs-5" style="padding: 0.375rem 0.75rem; min-width: 160px; min-height: 45px; border-radius: 50px;">Clear Basket</button>
+                </form>
+            </div>
+        {% else %}
+            <a class="navbar-brand" href="{{ url_for('galleryPage') }}">Home</a>
+            <p>Your basket is empty.</p>
+        {% endif %}
+    </div>
+    <footer class="footer1">
+        &copy; 2023 Nutri-Boost. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+    </footer>
+</body>
+</html>

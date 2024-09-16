@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ technology['name'] }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='single_tech.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <h1 class="d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('galleryPage') }}" class="logo-icon">
+                <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Nutri-Boost">
+            </a>
+            <a href="{{ url_for('register') }}" class="register-icon ml-auto">
+                <img src="{{ url_for('static', filename='register.jpeg') }}" alt="Register">
+            </a>
+            <a href="{{ url_for('basketPage') }}" class="basket-icon">
+                <img src="{{ url_for('static', filename='basket_icon.jpeg') }}" alt="Basket">
+            </a>
+        </h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-image-container">
+                    <img src="{{ url_for('static', filename=technology['image']) }}" alt="{{ technology['name'] }}" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-details">
+                    <h1 class="single-heading">{{ technology.name }}</h1>
+                    <div>
+                        <span class="price">£{{ technology.price }}.00</span>
+                    </div>
+                    <div>{{ wtf.quick_form(form) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Description</h3>
+                <p class="text-muted">{{ technology.description }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Carbon Footprint</h3>
+                <p class="text-muted">{{ technology.carbon }} gCO₂e</p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer1">
+        &copy; 2023 Nutri-Boost. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+    </footer>
+    {% endblock %}
+</body>
+</html>

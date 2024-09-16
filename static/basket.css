@@ -1,0 +1,48 @@
+.container {
+    width: 70%;
+    margin: 20px auto;
+    align-content: center;
+    align-items: cn;
+  }
+  .total-price {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  .footer1 {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 400px;
+  }
+  .checkout-actions {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .checkout-actions a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 1px solid black;
+  }
+  
+  .checkout-actions a:hover {
+    background-color: black;
+    color: white;
+  }
+  h1 {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  

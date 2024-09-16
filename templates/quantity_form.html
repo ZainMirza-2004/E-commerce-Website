@@ -1,0 +1,35 @@
+<!-- quantity_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ technology.name }}</title>
+</head>
+<link rel="stylesheet" href="{{ url_for('static', filename='quantity.css') }}">
+<body>
+    <div class="container">
+        <div class="product-details">
+            <h1>{{ technology.name }}</h1>
+            <div class="description">
+                <p>{{ technology.description }}</p>
+            </div>
+            <h3>Price: ${{ technology.price }}</h3>
+        </div>
+    <a href="{{ url_for('singleProductPage', techId=technology.id) }}" class="product-view-link">Full Product View</a>
+    <a href="{{ url_for('galleryPage') }}" class="home">Home</a>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.opinion.label }} {{ form.opinion(size=2) }}
+            {% for error in form.opinion.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="quantity-page-button">Add to Basket</button>
+        </div>
+    </form>
+</body>
+

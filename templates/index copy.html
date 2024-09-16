@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nutri-Boost</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="container">
+        {% extends "base.html" %}
+        {% block content %}
+        <h1>
+            <a href="{{ url_for('galleryPage') }}" class="logo-icon">
+                <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Nutri-Boost">
+            </a>
+            <div class="search-container">
+                <form id="searchForm">
+                    <div class="search-input-container">
+                        <img src="{{ url_for('static', filename='search_icon.jpeg') }}" alt="Search Icon">
+                        <input type="text" id="searchInput" placeholder="Search...">
+                    </div>
+                </form>
+            </div>
+            <a href="{{ url_for('register') }}" class="register-icon">
+                <img src="{{ url_for('static', filename='register.jpeg') }}" alt="Register">
+            </a>
+            <a href="{{ url_for('basketPage') }}" class="basket-icon">
+                <img src="{{ url_for('static', filename='basket_icon.jpeg') }}" alt="Basket">
+            </a>
+        </h1>
+        
+        <div class="banner">
+            <h2>Level Up Your Workouts. Boost Your Results.</h2> 
+            <p>Backed by cutting-edge research and formulated with the finest ingredients, our products are designed to support your goals, whether you're building muscle, improving endurance, or enhancing recovery</p>
+            <a href="#ourProducts" class="shop-now-button" id="shopNowButton">Shop Now</a>
+            <div id="bottom"></div>
+        </div>
+        <div class="banner2">
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video autoplay loop muted>
+                        <source src="{{ url_for('static', filename='boxing.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-wrapper">
+                    <video autoplay loop muted>
+                        <source src="{{ url_for('static', filename='gym.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-wrapper">
+                    <video autoplay loop muted>
+                        <source src="{{ url_for('static', filename='football.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="overlay-text">THEY USE NUTRI-BOOST.</div>
+        </div>
+        <div class="section-heading">
+            <h2>Our Products</h2>
+            <div class="sort">
+                <label for="sort">Sort by:</label>
+                <select id="sort" class="custom-select">
+                    <option value="name" {% if current_sort == 'name' %} selected {% endif %}>Name</option>
+                    <option value="price_asc" {% if current_sort == 'price_asc' %} selected {% endif %}>Price: Low to High</option>
+                    <option value="price_desc" {% if current_sort == 'price_desc' %} selected {% endif %}>Price: High to Low</option>
+                    <option value="carbon" {% if current_sort == 'carbon' %} selected {% endif %}>Carbon Footprint</option>
+                </select>
+            </div>
+        </div>
+        <div class="product-grid">
+            {% for tech in technologies %}
+            <div class="product" data-product-id="{{ tech.id }}"> <!-- Added data-product-id attribute -->
+                <input type="hidden" name="tech_id" value="{{ tech.id }}">
+                <a href="{{ url_for('singleProductPage', techId=tech.id) }}">
+                    <img src="{{ url_for('static', filename=tech.image) }}" alt="{{ tech.name }}">
+                    <h3>{{ tech.name }}</h3>
+                </a>
+                <div class="description-box">
+                    <p></p> 
+                </div>
+                <p class="price">£{{ tech.price }}.00</p>
+                <p class="carbon-footprint">Carbon Footprint: {{ tech.carbon }} gCO₂e</p>
+                <form action="{{ url_for('quantityPage', techId=tech.id) }}" method="GET">
+                    <button type="submit" class="add-to-basket">Add to Basket</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="testimonial-banner">
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for('static', filename='testimonial1.jpeg') }}" alt="Testimonial Image" class="testimonial-image">
+                        <blockquote>
+                            <p>"I've been using Nutri-Boost products for months now, and I've seen a significant improvement in my endurance and recovery. Highly recommended!"</p>
+                            <cite>- Crispin Cooper</cite>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for('static', filename='testimonial2.jpeg') }}" alt="Testimonial Image" class="testimonial-image">
+                        <blockquote>
+                            <p>"Nutri-Boost has been a game-changer for my workout routine. Their protein supplements are top-notch, and the results are undeniable."</p>
+                            <cite>- John Reyes</cite>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for('static', filename='testimonial3.jpeg') }}" alt="Testimonial Image" class="testimonial-image">
+                        <blockquote>
+                            <p>"I've tried various supplement brands, but Nutri-Boost stands out with their high-quality and effective products. Highly recommended for serious athletes."</p>
+                            <cite>- Mike Johnson</cite>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for('static', filename='testimonial4.jpeg') }}" alt="Testimonial Image" class="testimonial-image">
+                        <blockquote>
+                            <p>"As a professional athlete, Nutri-Boost supplements help me stay energized and focused throughout my workout sessions. I love the convenience and the great results!"</p>
+                            <cite>- Logan Perez</cite>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for('static', filename='testimonial5.jpeg') }}" alt="Testimonial Image" class="testimonial-image">
+                        <blockquote>
+                            <p>"I am truly impressed with Nutri-Boost. Their supplements have helped me push beyond my limits in the gym. Highly recommended!"</p>
+                            <cite>- Alex Johnson</cite>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for('static', filename='testimonial6.jpeg') }}" alt="Testimonial Image" class="testimonial-image">
+                        <blockquote>
+                            <p>"Nutri-Boost products are a must-have for anyone serious about fitness. The quality is unmatched, and the results speak for themselves."</p>
+                            <cite>- Ryan Morgan</cite>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for('static', filename='testimonial7.jpeg') }}" alt="Testimonial Image" class="testimonial-image">
+                        <blockquote>
+                            <p>"Since I started using Nutri-Boost supplements, I've noticed a significant improvement in my performance and recovery time. Absolutely love their products!"</p>
+                            <cite>- John Harrison</cite>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for('static', filename='testimonial10.jpg') }}" alt="Testimonial Image" class="testimonial-image">
+                        <blockquote>
+                            <p>"Nutri-Boost products have helped me achieve my fitness goals faster than I ever thought possible. I highly recommend them to anyone serious about their workouts."</p>
+                            <cite>- Crispin Cooper</cite>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="as-featured-in">
+            <h2>❝𝐀𝐬 𝐟𝐞𝐚𝐭𝐮𝐫𝐞𝐝 𝐢𝐧❞</h2>
+            <div class="featured-logos">
+                <img src="{{ url_for('static', filename='gq.jpeg') }}" alt="Logo 1">
+                <img src="{{ url_for('static', filename='mens_health.jpeg') }}" alt="Logo 2">
+                <img src="{{ url_for('static', filename='nyt.jpeg') }}" alt="Logo 3">
+                <img src="{{ url_for('static', filename='wsj.jpeg') }}" alt="Logo 4">
+                <img src="{{ url_for('static', filename='time.jpeg') }}" alt="Logo 5">
+            </div>
+        </div>
+        <div class="bottom-banner">
+            &copy; 2023 Nutri-Boost. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+    var testimonialSlides = $('.testimonial-slide');
+    var currentSlide = 0;
+
+    function showNextSlide() {
+        testimonialSlides.eq(currentSlide).fadeOut();
+        currentSlide = (currentSlide + 1) % testimonialSlides.length;
+        testimonialSlides.eq(currentSlide).fadeIn();
+    }
+
+    setInterval(showNextSlide, 7000); // Change slide every 7 seconds
+
+    $('#sort').change(function() {
+        var sortBy = $(this).val();
+        sortProducts(sortBy);
+    });
+
+    function sortProducts(sortBy) {
+        $.ajax({
+            url: "{{ url_for('galleryPage') }}",
+            type: "GET",
+            data: { sort: sortBy },
+            success: function(response) {
+                $('.product-grid').html($(response).find('.product-grid').html());
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+
+    $('#shopNowButton').click(function() {
+        $('html, body').animate({
+            scrollTop: $('#bottom').offset().top
+        }, 1000);
+    });
+
+    $('.product-grid').on('mouseenter', '.product', function() {
+        var productId = $(this).data('product-id');
+        fetchDescription(productId);
+    }).on('mouseleave', '.product', function() {
+        $(this).find('.description-box p').empty();
+    });
+
+    function fetchDescription(productId) {
+        $.ajax({
+            url: "/get-description",
+            type: "GET",
+            data: { id: productId },
+            success: function(response) {
+                $('.product[data-product-id="' + productId + '"] .description-box p').text(response.description);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+
+    $('#searchForm').submit(function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        var searchQuery = $('#searchInput').val().trim().toLowerCase();
+
+        // Hide all products initially
+        $('.product').hide();
+
+        // Show products matching the search query
+        $('.product').filter(function() {
+            var productName = $(this).find('h3').text().toLowerCase();
+            var productDescription = $(this).find('.description-box p').text().toLowerCase();
+            return productName.includes(searchQuery) || productDescription.includes(searchQuery);
+        }).show();
+    });
+});
+            </script>
+        {% endblock %}
+    </div>
+</body>
+</html>

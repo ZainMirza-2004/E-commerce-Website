@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shipping Label</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .recipient-info {
+            margin-bottom: 20px;
+        }
+        .recipient-label {
+            font-weight: bold;
+        }
+        .recipient-address {
+            margin-top: 10px;
+        }
+        .address-heading {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shipping Label</h1>
+        <p>Recipient: {{ recipient_name }}</p>
+        <div class="address-details">
+            <p class="address-heading">Address:</p>
+            <p class="address-line">Street Address: {{ recipient_address['street_address'] }}</p>
+            <p class="address-line">City: {{ recipient_address['city'] }}</p>
+            <p class="address-line">State: {{ recipient_address['state'] }}</p>
+            <p class="address-line">Postal Code: {{ recipient_address['postal_code'] }}</p>
+        </div>
+        <!-- Add more shipping label information as needed -->
+    </div>
+</body>
+</html>

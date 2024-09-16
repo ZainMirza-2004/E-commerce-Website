@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='checkout.css') }}">
+{% extends "base.html" %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <h1>Checkout Successful</h1>
+        <p>Thank you for your payment!</p>
+        <div class="tick-animation">
+            <div class="tick-circle"></div>
+            <div class="tick-stem"></div>
+            <div class="tick-kick"></div>
+        </div>
+    </div>
+    <a href="{{ url_for('galleryPage') }}" class="back-to-home-btn">Back to Home</a>
+    <a href="{{ url_for('purchaseDetailsPage') }}" class="back-to-home-btn">Order Details</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='opinion.css') }}">
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('galleryPage') }}" class="logo-icon">
+    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Nutri-Boost">
+</a>
+<a href="{{ url_for('basketPage') }}" class="basket-icon">
+    <img src="{{ url_for('static', filename='basket_icon.jpeg') }}" alt="Basket">
+</a>
+<div class="container d-flex justify-content-center align-items-center" style="height: 200vh;">
+    <div class="text-center">
+        <p class="success-message">You added {{ opinion }} {{ technology['name'] }}(s) to the basket</p>
+        <div class="tick-animation">
+            <div class="tick-circle"></div>
+            <div class="tick-stem"></div>
+            <div class="tick-kick"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
